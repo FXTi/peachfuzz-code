@@ -67,6 +67,7 @@ namespace Peach.Core.Dom
 		static NLog.Logger logger = LogManager.GetCurrentClassLogger();
 		public OrderedDictionary<string, DataElement> choiceElements = new OrderedDictionary<string, DataElement>();
 		DataElement _selectedElement = null;
+		static Random random = new Random((uint)Environment.TickCount);
 
 		public Choice()
 		{
@@ -114,7 +115,7 @@ namespace Peach.Core.Dom
 		public void SelectDefault()
 		{
 			Clear();
-			this.Add(choiceElements[0]);
+			this.Add(random.Choice(choiceElements).Value);
 			_selectedElement = this[0];
 		}
 
